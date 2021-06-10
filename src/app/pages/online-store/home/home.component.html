@@ -1,0 +1,20 @@
+<div (scrolled)="onScroll()"
+     [infiniteScrollDistance]="5"
+     [infiniteScrollThrottle]="600"
+     [scrollWindow]="false"
+     class="infinite-scroll-container container-home-products p-3"
+     infiniteScroll>
+
+    <app-home-header [setup]="getSetupState | async"></app-home-header>
+
+    <div class="mt-3" mat-tab-nav-bar>
+        <a #rla="routerLinkActive" class="tab-text" 
+           *ngFor="let routeLink of routeLinks"
+           [active]="rla.isActive"
+           [routerLink]="routeLink.link" mat-tab-link
+           routerLinkActive>
+            {{routeLink.label}}
+        </a>
+    </div>
+    <router-outlet></router-outlet>
+</div>

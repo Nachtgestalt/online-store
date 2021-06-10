@@ -1,0 +1,46 @@
+.view-full {
+  width: 80%;
+  margin: auto;
+  margin-top: 4.8%
+}
+
+h1:after {
+  content: "";
+  display: block;
+  width: 49px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  height: 5px;
+  background-color: #ff0000;
+}
+
+.title {
+  margin-bottom: 25px;
+}
+
+.subtitle {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #5f5a5a;
+  line-height: 22px;
+}
+
+.register a {
+  font-weight: bold;
+  color: #0074CB;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+form {
+  font-size: 18px;
+  //padding-right: 2rem
+}
+
+mat-error {
+  font-size: 14px;
+}

@@ -1,0 +1,36 @@
+<h1>Administrar empresas > Formas de pago > {{companyName | titlecase}}</h1>
+<div class="col-md-12">
+    <div class="row">
+        <button (click)="goBack()" aria-label="Regresar a mis pedidos" mat-icon-button>
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ag-grid-angular [gridOptions]="gridOptions"
+                         [localeText]="localeText"
+                         [singleClickEdit]="true"
+                         [stopEditingWhenGridLosesFocus]="true"
+                         [suppressRowClickSelection]="true"
+                         class="ag-theme-balham"
+                         rowHeight="30"
+                         style="width: 100%; height: 100%"
+                         [style.height]="gridHeight"
+        >
+        </ag-grid-angular>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <button (click)="toggleStatus()"
+                [disabled]="selectedRows.length <= 0"
+                class="mr-3"
+                color="warn"
+                mat-raised-button>
+            {{statusLabelButton}} selección
+        </button>
+    </div>
+</div>

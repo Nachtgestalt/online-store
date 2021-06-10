@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Precios a mostrar</h2>
+<mat-dialog-content>
+    <form [formGroup]="priceTypeForm" class="d-flex flex-grow-1 flex-column mt-3">
+        <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+            <mat-label>Tipos de precio</mat-label>
+            <mat-select formControlName="priceId">
+                <mat-option *ngFor="let priceType of priceTypes$ | async"
+                            [value]="priceType.id">
+                    {{priceType.label}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+            <mat-label>Show price</mat-label>
+            <mat-select formControlName="showPrice">
+                <mat-option *ngFor="let showPriceOption of showPriceOptions"
+                            [value]="showPriceOption.value">
+                    {{showPriceOption.label}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-dialog-close mat-stroked-button>Cancelar</button>
+    <button (click)="save()"
+            cdkFocusInitial
+            color="warn"
+            mat-stroked-button>
+        Guardar
+    </button>
+</mat-dialog-actions>

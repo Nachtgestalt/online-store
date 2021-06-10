@@ -1,0 +1,56 @@
+<div class="container mt-3">
+    <div class="row">
+        <h1>Editar datos de la empresa</h1>
+    </div>
+
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Logo de la empresa
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="d-flex flex-column mb-3">
+                <img *ngIf="imgURL" [src]="imgURL" alt="" height="200" style="display: block; margin: auto"
+                     width="200">
+                <button (click)="file.click()" class="my-3" mat-stroked-button>
+                    Seleccionar archivos
+                </button>
+                <input #file
+                       (change)="onFileChange($event.target.files)"
+                       [formControl]="fileInput"
+                       accept="image/*"
+                       style="display: none"
+                       type="file"
+                />
+                <button (click)="onSumitLogo()" color="warn" mat-raised-button>Guardar</button>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Información de la empresa
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form (ngSubmit)="onSubmitConfig()" [formGroup]="configForm">
+                <div class="d-flex flex-column justify-content-center">
+                    <h3 class="mb-0">Contacto</h3>
+                    <mat-form-field class="mb-3">
+                        <mat-quill #matEditorContact
+                                   formControlName="contactInfo"
+                                   style="background-color: transparent"></mat-quill>
+                    </mat-form-field>
+
+                    <h3 class="mb-0">Acerca de nosotros</h3>
+                    <mat-form-field class="mb-3">
+                        <mat-quill #matEditorAboutUs
+                                   formControlName="aboutUs"
+                                   style="background-color: transparent"></mat-quill>
+                    </mat-form-field>
+                </div>
+                <button color="warn" mat-raised-button style="width: 100%">Guardar</button>
+            </form>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

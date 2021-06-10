@@ -1,0 +1,45 @@
+<div class="col-md-12 mt-3">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>Administrar privilegios</span>
+            <span class="toolbar-spacer"></span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+
+
+<div class="col-md-12">
+    <ag-grid-angular [gridOptions]="gridOptions"
+                     [localeText]="localeText"
+                     [singleClickEdit]="true"
+                     [stopEditingWhenGridLosesFocus]="true"
+                     [suppressRowClickSelection]="true"
+                     class="ag-theme-balham"
+                     rowHeight="30"
+                     [style.height]="gridHeight"
+                     style="width: 100%"
+    >
+    </ag-grid-angular>
+</div>
+
+<div class="row p-3 m-0">
+    <button (click)="openModal(false)"
+            class="mr-3"
+            color="primary"
+            mat-raised-button>
+        Nuevo
+    </button>
+    <button (click)="openModal(true)"
+            [disabled]="selectedRows.length <= 0"
+            class="mr-3"
+            color="primary"
+            mat-raised-button>
+        Editar selección
+    </button>
+    <!--            <button (click)="deletePrivilege()"-->
+    <!--                    [disabled]="selectedRows.length <= 0"-->
+    <!--                    color="primary"-->
+    <!--                    mat-raised-button>-->
+    <!--                Desactivar selección-->
+    <!--            </button>-->
+</div>

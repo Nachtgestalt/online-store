@@ -1,0 +1,81 @@
+<div class="row mobile-image-slider" *ngIf="isMobile">
+    <div class="col-md-12">
+        <ng-image-slider #nav 
+        [images]="imageObject"
+        [manageImageRatio]="true" 
+        [infinite]="infiniteSlider"
+        [autoSlide]="3"
+        [videoAutoPlay]="true"
+        [imageSize]="{width: '100%', height: 150}"                                     
+        ></ng-image-slider>
+    </div>
+</div>
+
+<div (scrolled)="onScroll()"
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     [scrollWindow]="false"
+     class="infinite-scroll-container"
+     infinite-scroll>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-12" style="min-width: 250px; padding-top: 25px">
+                    <ng-image-slider #nav
+                                     *ngIf="!isMobile"
+                                     [images]="imageObject"
+                                     [manageImageRatio]="true"
+                                     [infinite]="infiniteSlider"
+                                     [autoSlide]="3"
+                                     [videoAutoPlay]="true"
+                                     [imageSize]="{width: '100%', height: 300}"
+                    ></ng-image-slider>
+                    <div class="row" style="margin: .5rem 0;">
+                        <strong>{{productData?.nombre}}</strong>
+                    </div>
+                    <div *ngIf="showStock$ | async" class="row">
+                        <div [innerHTML]="productData?.stock| stock"></div>
+                    </div>
+                    <div class="price-info">
+                        <b *ngIf="showPrice$ | async">Precio: {{(productData?.pvp - productData?.discount_value) | currency}}</b>
+
+
+                        <button (click)="addProductToCart()"
+                                *ngIf="productData?.stock > 0"
+                                color="warn"
+                                mat-flat-button>
+                            <mat-icon>add_shopping_cart</mat-icon>
+                            Añadir
+                        </button>
+                    </div>
+                    <!-- <div class="row" style="margin: .5rem 0;">
+                        <strong>Marca: {{(productData?.pvp - productData?.discount_value) | currency}}</strong>
+                    </div> -->
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12 d-flex flex-row justify-content-center">
+                    <button mat-icon-button shareButton="facebook" [style.color]="share.prop.facebook.color">
+                        <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                    </button>
+                    <button [style.color]="share.prop.whatsapp.color" mat-icon-button
+                            shareButton="whatsapp">
+                        <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
+                    </button>
+                    <button [style.color]="share.prop.telegram.color" mat-icon-button
+                            shareButton="telegram">
+                        <fa-icon [icon]="share.prop.telegram.icon" size="lg"></fa-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-3">
+<!--                Aqui van los comentarios-->
+            </div>
+        </div>
+        <div class="col-md-5">
+            <app-list-products *ngIf="productData"
+                               [categoryId]="productData?.category_id"
+                               [page]="actualPage"></app-list-products>
+        </div>
+    </div>
+</div>

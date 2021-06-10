@@ -1,0 +1,34 @@
+<mat-card class="product-card">
+    <div (click)="goToProduct(productInfo.product_id)" class="image-content">
+        <img [src]="productInfo?.images[0] || './assets/producto-default.jpg'" alt="Foto de producto"
+             class="responsive-img item-img">
+    </div>
+    <div *ngIf="(showStock$ | async)" class="row justify-content-center m-0">
+        <div [innerHTML]="productInfo.stock| stock"></div>
+    </div>
+    <mat-card-content (click)="goToProduct(productInfo.product_id)" class="product-card-content">
+        <span class="product-title" title="{{productInfo.nombre | titlecase}}">
+            {{productInfo.nombre | titlecase | slice:0:45}}...
+        </span>
+    </mat-card-content>
+    <mat-card-actions class="product-card-actions">
+        <span class="product-subtitle">
+            <span *ngIf="showPrice$ | async"
+                  class="product-subtitle">{{(productInfo.pvp - productInfo.discount_value) | currency}}</span>
+            <button (click)="uploadImage(productInfo)" *ngIf="(getAuthState | async).isAuthenticated"
+                    aria-label="Añadir imagenes"
+                    color="accent"
+                    mat-mini-fab
+            >
+                <mat-icon>add_a_photo</mat-icon>
+            </button>
+            <button (click)="addProduct()" *ngIf="productInfo.stock > 0"
+                    aria-label="Añadir al carrito de compras"
+                    color="warn"
+                    mat-fab
+            >
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>            
+        </span>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>{{labelHeader}} Tipo</h2>
+<mat-dialog-content>
+    <form (ngSubmit)="saveStatusOrders()" [formGroup]="statusOrdersForm">
+        <p>
+            <mat-form-field appearance="outline" floatLabel="always" style="width: 100%;">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="statusName"
+                       matInput
+                       type="text">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" floatLabel="always" style="width: 100%;">
+                <mat-label>Color</mat-label>
+                <input formControlName="statusColor"
+                       (colorPickerChange)="statusOrdersForm.get('statusColor').patchValue($event)"
+                       [colorPicker]="statusOrdersForm.get('statusColor').value"
+                       [style.background]="statusOrdersForm.get('statusColor').value"
+                       [value]="statusOrdersForm.get('statusColor').value"
+                       matInput
+                       type="text">
+            </mat-form-field>
+        </p>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-dialog-close mat-stroked-button>Cancelar</button>
+    <button (click)="saveStatusOrders()"
+            cdkFocusInitial
+            color="warn"
+            mat-stroked-button>Guardar
+    </button>
+</mat-dialog-actions>

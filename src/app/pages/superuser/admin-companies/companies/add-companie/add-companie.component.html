@@ -1,0 +1,191 @@
+<h2 mat-dialog-title>{{labelHeader}} empresa</h2>
+<mat-dialog-content>
+    <h3>Datos de la empresa</h3>
+    <div class="row">
+        <form (ngSubmit)="saveCompanieSetup()" [formGroup]="companieForm" class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Id compañia</mat-label>
+                            <input formControlName="companyId"
+                                   matInput
+                                   type="number">
+                            <mat-error *ngIf="f.companyId.hasError('required') && f.companyId.touched">
+                                Obligatorio
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Company account</mat-label>
+                            <input formControlName="companyAccount"
+                                   matInput
+                                   type="text">
+                            <mat-error *ngIf="f.companyAccount.hasError('pattern') && f.companyAccount.touched">
+                                Solo puede contener números y/o letras
+                            </mat-error>
+                            <mat-error *ngIf="f.companyAccount.hasError('required') && f.companyAccount.touched">
+                                Obligatorio
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Id Bodega</mat-label>
+                            <input formControlName="bodegaId"
+                                   matInput
+                                   type="number">
+                        </mat-form-field>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>País</mat-label>
+                            <input formControlName="country"
+                                   matInput
+                                   type="text">
+                        </mat-form-field>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Ciudad</mat-label>
+                            <input formControlName="city"
+                                   matInput
+                                   type="text">
+                        </mat-form-field>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Dirección</mat-label>
+                            <input formControlName="address"
+                                   matInput
+                                   type="text">
+                        </mat-form-field>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Nombre Comercial</mat-label>
+                            <input formControlName="nombreComercial"
+                                   matInput
+                                   type="text">
+                        </mat-form-field>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Slogan</mat-label>
+                            <input formControlName="slogan"
+                                   matInput
+                                   type="text">
+                        </mat-form-field>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Logo</mat-label>
+                            <input formControlName="logoName"
+                                   matInput
+                                   type="text">
+                        </mat-form-field>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Bucket</mat-label>
+                            <input formControlName="bucketToImages"
+                                   matInput
+                                   type="text">
+                            <mat-error *ngIf="f.bucketToImages.hasError('required') && f.bucketToImages.touched">
+                                Obligatorio
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Mostrar stock</mat-label>
+                            <mat-select formControlName="showStock">
+                                <mat-option *ngFor="let option of showStockOptions"
+                                            [value]="option.value">
+                                    {{option.label}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Mostrar stock agotado</mat-label>
+                            <mat-select formControlName="showOutOfStock">
+                                <mat-option *ngFor="let option of showOutOfStockOptions"
+                                            [value]="option.value">
+                                    {{option.label}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Expire date</mat-label>
+                            <input formControlName="expireDate"
+                                   matInput
+                                   type="date">
+                        </mat-form-field>
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <p>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Cod. Establecimiento</mat-label>
+                            <input formControlName="codEstablecimiento"
+                                   matInput
+                                   type="text">
+                        </mat-form-field>
+                    </p>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-dialog-close mat-stroked-button>Cancelar</button>
+    <button (click)="saveCompanieSetup()"
+            cdkFocusInitial
+            color="warn"
+            mat-stroked-button>Guardar
+    </button>
+</mat-dialog-actions>

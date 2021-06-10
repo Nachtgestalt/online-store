@@ -1,0 +1,26 @@
+<div class="row mt-3">
+    <div class="col-md-12" style="height: calc(100vh - 250px)">
+        <ag-grid-angular [gridOptions]="gridUserOptions"
+                         [localeText]="localeText"
+                         [singleClickEdit]="true"
+                         [stopEditingWhenGridLosesFocus]="true"
+                         [suppressRowClickSelection]="true"
+                         class="ag-theme-balham"
+                         rowHeight="30"
+                         style="width: 100%; height: 100%"
+        >
+        </ag-grid-angular>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <button (click)="openModal(false)"
+                [disabled]="selectedUsers.length <= 0"
+                class="mr-3"
+                color="warn"
+                mat-raised-button>
+            Ver privilegios
+        </button>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div mat-tab-nav-bar color="primary">
+                <a #rla="routerLinkActive" class="tab-text"
+                   *ngFor="let routeLink of routeLinks"
+                   [active]="rla.isActive"
+                   [routerLink]="routeLink.link" mat-tab-link
+                   routerLinkActive>
+                    {{routeLink.label}}
+                </a>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<mat-nav-list>
+    <mat-list-item *ngFor="let product of shoppingList; index as i"
+                   class="mt-3 list-rigth-item"
+                   style="cursor:pointer;">
+
+        <div [routerLink]="['/product', product.id]" class="col-md-5 thumbnail">
+            <img class="responsive-img" [src]="product.image || './assets/producto-default.jpg'" class="image-product">
+        </div>
+        <div class="ml-1 col-md-7">
+            <div class="d-flex flex-column justify-content-around meta-data" style="min-height: 94px">
+                <span [routerLink]="['/product', product.id]" class="product-title"
+                      title="{{product.name | titlecase }}">
+                    {{product.name | titlecase }}</span>
+                <span class="product-subtitle">{{product.marca}}</span>
+                <span class="product-subtitle">
+                    {{product.price | currency}}
+                </span>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="d-flex flex-column justify-content-end">
+                <span>Cantidad: {{product.amount}}</span>
+                <span>Subtotal: {{(product.amount * product.price) | currency}}</span>
+            </div>
+        </div>
+    </mat-list-item>
+</mat-nav-list>

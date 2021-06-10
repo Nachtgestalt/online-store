@@ -1,0 +1,189 @@
+<app-loading-screen></app-loading-screen>
+
+<div [class.home-is-mobile]="mobileQuery.matches" class="home-container">
+    <mat-toolbar color="accent">
+        <mat-toolbar-row *ngIf="!searching" class="home-toolbar">
+            <div class="start">
+                <button (click)="snav.toggle()" mat-icon-button>
+                    <mat-icon color="warn">{{!snav.opened ? 'menu' : 'menu_open'}}</mat-icon>
+                </button>
+                <h1 class="home-app-name" routerLink="./">
+                    <img *ngIf="!mobileQuery.matches" alt="Logo"
+                         src="assets/no-logo.png" style="width: 100%">
+                    <img *ngIf="mobileQuery.matches" alt="Logo"
+                         src="assets/no-logo.png" style="width: 100%">
+                </h1>
+            </div>
+            <div *ngIf="!mobileQuery.matches" class="center">
+                <form class="search-form">
+                    <mat-form-field appearance="outline" class="searchbox" id="searchbox">
+                        <mat-label>Buscar Productos</mat-label>
+                        <input #autoCompleteInput
+                               id="search-input"
+                               [formControl]="searchInput"
+                               [matAutocomplete]="auto"
+                               matInput
+                               placeholder="Buscar" type="search">
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="searchProduct()"
+                                          [displayWith]="displayFn">
+                            <mat-option (click)="searchProduct()" (keydown.enter)="searchProduct()"
+                                        *ngFor="let product of searchOptions | async"
+                                        [value]="product">
+                                {{product.nombre}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <button (click)="searchProduct()" class="search-icon">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </form>
+            </div>
+            <div class="end">
+                <mat-icon (click)="enableSearchBar()" *ngIf="mobileQuery.matches" aria-hidden="false"
+                          aria-label="search"
+                          class="mr-2"
+                >search
+                </mat-icon>
+                <button [matBadge]="badgeItemsInCart"
+                        [routerLink]="'./cart'"
+                        aria-label="Carrito de compras"
+                        class="mr-2"
+                        color="warn"
+                        mat-icon-button
+                        matBadgeColor="warn"
+                        matBadgePosition="after"
+                        matBadgeSize="medium"
+                        type="button"
+                >
+                    <mat-icon>shopping_cart</mat-icon>
+                </button>
+                <div (click)="goToLogin()" *ngIf="!isAuthenticated"
+                     [style.border]="mobileQuery.matches ? 'none' : '1px solid #065fd4'"
+                     class="button-no-login-wrapper">
+                    <mat-icon>account_circle</mat-icon>
+                    <mat-label *ngIf="!mobileQuery.matches" class="button-no-login-label">Iniciar sesión</mat-label>
+                </div>
+                <button *ngIf="isAuthenticated" [matMenuTriggerFor]="menu" class="avatar-button" id="avatar-button" mat-button color="primary">
+                    <div class="img-avatar-wrapper">
+                        <img alt="Imagen de perfil" class="img-avatar"
+                             src="assets/no-profile-image.png">
+                    </div>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <span *ngIf="user" mat-menu-item>{{user?.username}}</span>
+                    <button *ngFor="let option of menuOptions" [routerLink]="option.url" mat-menu-item>
+                        <span>{{option.label}}</span>
+                    </button>
+                    <button (click)="logout()" mat-menu-item>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+        <mat-toolbar-row *ngIf="mobileQuery.matches && searching">
+            <form class="search-form">
+                <button (click)="disableSearchBar()"
+                        aria-label="search"
+                        mat-icon-button color="warn"
+                        style="margin-top: 10px;"
+                        type="button"
+                >
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <mat-form-field appearance="outline" class="searchbox" id="searchbox">
+                    <mat-label>Buscar</mat-label>
+                    <input #autoCompleteInputMobile
+                           [formControl]="searchInput"
+                           [matAutocomplete]="auto"
+                           matInput
+                           placeholder="Buscar">
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="searchProduct()"
+                                      [displayWith]="displayFn">
+                        <mat-option (click)="searchProduct()" (keydown.enter)="searchProduct()"
+                                    *ngFor="let product of searchOptions | async"
+                                    [value]="product">
+                            {{product.nombre}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+                <button (click)="searchProduct()"
+                        aria-label="search"
+                        color="warn"
+                        mat-icon-button
+                        style="margin-top: 10px;">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </form>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="home-sidenav-container">
+        <mat-sidenav #snav [autoFocus]="!mobileQuery.matches"
+                     [fixedInViewport]="mobileQuery.matches"
+                     [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches"
+                     fixedTopGap="56">
+                     
+                     <div *ngIf="mobileQuery.matches" class="imagotipo-tiendas-sidenav">
+                        <button (click)="snav.toggle()" mat-icon-button color="warn">
+                            <mat-icon *ngIf="snav.opened" class="sidenav-back-button">arrow_back</mat-icon>
+                        </button>
+                        <div class="imagotipo-sidenav">
+                            <img alt="Logo" src="assets/no-logo.png">
+                        </div>
+                    </div>
+
+                     <mat-selection-list *ngIf="!isOnDashboard" [multiple]="false">
+                        <mat-list-option (click)="onUpdateProducts('news')">
+                            <mat-icon mat-list-icon color="primary">fiber_new</mat-icon>
+                            Nuevos
+                        </mat-list-option>
+                        <mat-list-option (click)="goToFeaturedProducts()">
+                            <mat-icon mat-list-icon>star</mat-icon>
+                            Destacados
+                        </mat-list-option>
+                         <mat-list-option (click)="goToProductsOnOffer()">
+                             <mat-icon mat-list-icon>local_offer</mat-icon>
+                             En Oferta
+                         </mat-list-option>
+                      </mat-selection-list>                     
+
+                     <mat-form-field appearance="outline" class="mt-1 filterbox">
+                        <mat-label>Filtrar Categor&iacute;as</mat-label>
+                        <input [formControl]=" filterCategoriesInput"
+                               matInput
+                               placeholder="Buscar"
+                               type="text"
+                        >
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+
+            <mat-nav-list *ngIf="isOnDashboard" style="height: 100%">
+                <a (click)="mobileQuery.matches ? snav.close() : null"
+                   *ngFor="let option of dashboardOptions"
+                   [routerLink]="option.url"
+                   routerLinkActive="active-list-item"
+                   mat-list-item title="{{option.label | titlecase}}">
+                    <!--                        <mat-icon class="category-icon">list_alt</mat-icon>-->
+                    {{option.label | titlecase}}</a>
+            </mat-nav-list>
+            <cdk-virtual-scroll-viewport *ngIf="!isOnDashboard" [itemSize]="48" class="categories-list">
+                <mat-nav-list style="height: 100%">
+                    <a (click)="mobileQuery.matches ? snav.close() : null"
+                       *cdkVirtualFor="let categorie of categories | filter: filterCategoriesInput.value : searchableList; let i = index;"
+                       [routerLink]="['./cat', categorie.nombre, categorie.category_id]"
+                       mat-list-item title="{{categorie.nombre | titlecase}}">
+                        <mat-icon color="warn" class="category-icon">check_circle</mat-icon>
+                        {{categorie.nombre | titlecase | slice:0:21}}</a>
+                </mat-nav-list>
+            </cdk-virtual-scroll-viewport>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="main-panel">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+

@@ -1,0 +1,86 @@
+// .home-header {
+//   width: 100%;
+//   padding: 16px 77px 4px;
+//   position: relative;
+//   min-width: 0;
+//   @media (max-width: 600px) {
+//     padding: 5px;
+//   }
+// }
+.center-left {
+  text-align: left;
+  @media (max-width: 600px) {
+    text-align: center;
+  }
+}
+.home-header {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: 1fr
+}
+
+.home-header-container {
+  width: 100%;
+  height: 100%;
+  max-width: 1284px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.company-logo {
+  height: 80px;
+  width: 80px;
+  margin: 0 24px 0 0;
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.company-info {
+  min-width: 150px;
+  flex: 1;
+}
+
+
+.inner-header-container {
+  flex-wrap: wrap;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.category-toolbar {
+  display: flex;
+  justify-content: center;
+}
+
+:host ::ng-deep .whatsapp-bg {
+  background: var(--whatsapp-color);
+  color: #fff;
+  .mat-button-wrapper {
+    padding: 0px !important;
+  }
+}
+
+.whatsapp-bg {
+  background: var(--whatsapp-color);
+  color: #fff;
+  font-weight: bold;
+}
+
+.whatsapp-bg:hover {
+  background: #2ECC71;
+  color: #fff;
+}
+
+::ng-deep .customize-menu{
+  padding:0px !important;
+  background-color: var(--whatsapp-color);
+}
+
+.white-icon {
+  color: white;
+}

@@ -1,0 +1,149 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Perfil de usuario</h1>
+        </div>
+    </div>
+
+    <mat-accordion multi>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Datos personales
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <form (ngSubmit)="onSubmitPersonData()"
+                  [formGroup]="personDataForm"
+                  class="d-flex flex-grow-1 flex-column">
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>C.I/RUC</mat-label>
+                    <input formControlName="ciRuc" matInput type="text">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="firstname" matInput type="text">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Apellidos</mat-label>
+                    <input formControlName="lastname" matInput type="text">
+                </mat-form-field>
+
+                <button class="w-25" color="warn" mat-raised-button>Guardar</button>
+            </form>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Datos de facturación
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form (ngSubmit)="onSubmitAddress(BILLING_ADDRESS)" [formGroup]="billingAddressForm"
+                  class="d-flex flex-grow-1 flex-column">
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>País</mat-label>
+                    <input formControlName="country" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Ciudad</mat-label>
+                    <input formControlName="city" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Dirección</mat-label>
+                    <input formControlName="address" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Número</mat-label>
+                    <input formControlName="houseNumber" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Código postal</mat-label>
+                    <input formControlName="zipCode" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Calle principal</mat-label>
+                    <input formControlName="streetMain" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Calle secundaria</mat-label>
+                    <input formControlName="streetSecond" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Referencía</mat-label>
+                    <input formControlName="reference" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Número de teléfono</mat-label>
+                    <input formControlName="phone" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Número de teléfono movil</mat-label>
+                    <input formControlName="mobile" matInput>
+                </mat-form-field>
+                <button class="w-25" color="warn" mat-raised-button>Guardar</button>
+            </form>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Datos de entrega
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form (ngSubmit)="onSubmitAddress(DELIVERY_ADDRESS)" [formGroup]="deliveryAddressForm"
+                  class="d-flex flex-grow-1 flex-column">
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>País</mat-label>
+                    <input formControlName="country" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Ciudad</mat-label>
+                    <input formControlName="city" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Dirección</mat-label>
+                    <input formControlName="address" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Número</mat-label>
+                    <input formControlName="houseNumber" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Código postal</mat-label>
+                    <input formControlName="zipCode" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Calle principal</mat-label>
+                    <input formControlName="streetMain" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Calle secundaria</mat-label>
+                    <input formControlName="streetSecond" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Referencía</mat-label>
+                    <input formControlName="reference" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Número de teléfono</mat-label>
+                    <input formControlName="phone" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mb-3 w-50" floatLabel="always">
+                    <mat-label>Número de teléfono movil</mat-label>
+                    <input formControlName="mobile" matInput>
+                </mat-form-field>
+                <button class="w-25" color="warn" mat-raised-button>Guardar</button>
+            </form>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

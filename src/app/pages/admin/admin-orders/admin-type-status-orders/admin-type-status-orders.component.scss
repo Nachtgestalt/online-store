@@ -1,0 +1,21 @@
+mat-icon {
+  color: #ffffff;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 30px;
+}
+
+.mat-toolbar-multiple-rows {
+  min-height: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .mat-toolbar-row, .mat-toolbar-single-row {
+    height: 64px;
+  }
+
+  .mat-toolbar-multiple-rows {
+    min-height: 64px;
+  }
+}

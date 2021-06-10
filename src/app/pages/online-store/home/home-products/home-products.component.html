@@ -1,0 +1,32 @@
+<section class="order-toolbar">
+    <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
+        <mat-icon>swap_vert</mat-icon>
+        Ordenar Productos Por
+    </button>
+    <mat-menu #menu="matMenu">
+        <button (click)="applyFilter(1)" mat-menu-item>Más nuevos primero</button>
+        <button (click)="applyFilter(2)" mat-menu-item>Más Antiguos primero</button>
+        <button (click)="applyFilter(3)" mat-menu-item>De A-Z</button>
+        <button (click)="applyFilter(4)" mat-menu-item>De Z-A</button>
+        <button (click)="applyFilter(5)" *ngIf="showPrice$ | async" mat-menu-item>Menor Precio</button>
+        <button (click)="applyFilter(6)" *ngIf="showPrice$ | async" mat-menu-item>Mayor Precio</button>
+        <button (click)="applyFilter(7)" *ngIf="showStock$ | async" mat-menu-item>Menor Stock</button>
+        <button (click)="applyFilter(8)" *ngIf="showStock$ | async" mat-menu-item>Mayor Stock</button>
+    </mat-menu>
+</section>
+
+<div class="row pt-3 row-my-items">
+    <app-product *ngFor="let product of homeProducts"
+                 [productInfo]="product"
+                 class="col-md-3 p-2"></app-product>
+</div>
+
+<div class="row justify-content-center" style="width: 100%; height: 50px; margin-bottom: 1rem">
+    <mat-progress-spinner *ngIf="loading"
+                          color="warn"
+                          diameter="40"
+                          mode="indeterminate"
+                          strokeWidth="3">
+    </mat-progress-spinner>
+</div>
+

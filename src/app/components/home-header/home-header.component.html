@@ -1,0 +1,72 @@
+<!-- <div class="home-header d-flex"> -->
+    <div class="home-header">
+        <div class="center">
+            <img [src]="setup.logoName || 'assets/no-logo.png'" class="company-logo">
+        </div>
+        <div class="center-left">
+            <div class="inner-header-container">
+                <div class="company-info">
+                    <h2 class="m-0">{{setup.nombreComercial}}</h2>
+                    <p class="m-0">{{setup.city}}</p>
+                    <p class="m-0">{{setup.slogan}}</p>
+                </div>
+            </div>
+
+            <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
+                <mat-icon>location_city</mat-icon>
+                Sucursales
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="redirectToStore(branch)"
+                *ngFor="let branch of branch$ | async"
+                [value]="branch.companyAccount">                
+                <mat-icon>location_city</mat-icon>
+                {{branch.companyAccount}}
+            </button>
+            </mat-menu>
+
+        </div>
+
+        <div class="center hide-on-small-only">
+            <!-- <button mat-flat-button class="whatsapp-bg" [matMenuTriggerFor]="menuWhatsapp">
+                <img src="https://img.icons8.com/color/48/000000/whatsapp.png"/>
+                WhatsApp
+            </button> -->
+
+            <button mat-fab class="whatsapp-bg" [matMenuTriggerFor]="menuWhatsapp" aria-label="Contactar por Whatsapp">
+                <img src="./assets/icons/icon-whatsapp.svg"/>
+              </button>
+
+            <mat-menu #menuWhatsapp="matMenu" class="customize-menu">
+                <button (click)="sendWhats(registry)" *ngFor="let registry of directory$ | async" class="whatsapp-bg"
+                        mat-menu-item>
+                    {{registry.name}} ({{registry.countryCode}}){{registry.whatsappNumber}}
+                    <mat-icon class="white-icon">send</mat-icon>
+                </button>
+            </mat-menu>
+
+            <!-- <button mat-stroked-button color="primary" [matMenuTriggerFor]="menuEmail">
+                <mat-icon>location_city</mat-icon>
+                E-mail
+            </button>
+            <mat-menu #menuEmail="matMenu">
+                <button mat-menu-item (click)="redirectToStore(branch)"
+                *ngFor="let branch of branch$ | async"
+                [value]="branch.companyAccount">                
+                <mat-icon>location_city</mat-icon>
+                {{branch.companyAccount}}
+            </button>
+            </mat-menu>             -->
+        </div>
+        <div class="center hide-on-small-only">
+            &nbsp;
+        </div>
+    </div>
+<!-- </div> -->
+
+<section *ngIf="category" class="category-toolbar">
+    <button mat-stroked-button color="warn">
+        <mat-icon>check_circle</mat-icon>
+        {{category}}
+    </button>
+</section>

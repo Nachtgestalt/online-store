@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-4">
+        <h3>Seleccione archivos</h3>
+        <div class="row justify-content-center">
+            <img *ngIf="preview" [src]="preview" height="200">
+        </div>
+        <div class="row justify-content-center my-3">
+            <button (click)="file.click()" mat-stroked-button>
+                Seleccionar archivos
+            </button>
+            <input #file
+                   (change)="onFileChange($event.target.files)"
+                   [formControl]="fileInput"
+                   accept="image/*"
+                   style="display: none"
+                   type="file"
+            />
+        </div>
+        <div *ngIf="fileErrors.length > 0" class="alert alert-danger mt-3 mb-0">
+            <h4>Error al cargar estos archivos</h4>
+            <ul>
+                <li *ngFor="let fileError of fileErrors">El archivo {{fileError.name}} es mayor a 3MB</li>
+            </ul>
+        </div>
+        <h4>Cargar archivos</h4>
+        <button (click)="cargarImagenes()" [disabled]="archivos.length === 0" color="primary" mat-stroked-button>
+            Cargar imagenes
+        </button>
+        <button (click)="clearFiles()" class="ml-5" color="warn" mat-stroked-button>Limpiar</button>
+        <mat-list role="list">
+            <mat-list-item *ngFor="let archivo of archivos">
+                <img (click)="preview = imgURL" [src]="imgURL" mat-list-avatar style="width: 64px; height: 64px">
+                <div mat-line>
+                    {{ archivo.nombreArchivo }} <small> -
+                    Tamaño: {{ archivo.archivo.size / 1024 / 1024 | number: '.2-2' }}
+                    MB</small>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+
+    <div class="col-md-8">
+        <h3>Imagenes cargadas</h3>
+        <mat-selection-list #imageRef>
+            <mat-list-option *ngFor="let image of images | async" [value]="image">
+                <img (click)="preview = image.url" [src]="image.url" mat-list-avatar
+                     style="width: 64px; height: 64px">
+                <div mat-line>Fecha de modificación:</div>
+                <div mat-line>{{image.LastModified | date}}</div>
+            </mat-list-option>
+        </mat-selection-list>
+        <div class="row justify-content-end">
+            <button (click)="deleteImages()" *ngIf="imageRef.selectedOptions.selected.length !== 0"
+                    class="ml-5 col-md-4 mt-3" color="warn"
+                    mat-raised-button>
+                <mat-icon class="mr-3" style="color: white">delete</mat-icon>
+                Eliminar
+            </button>
+        </div>
+    </div>
+</div>

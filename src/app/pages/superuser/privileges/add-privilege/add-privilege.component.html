@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{labelHeader}} privilegio</h2>
+<mat-dialog-content>
+    <form (ngSubmit)="savePrivilege()" [formGroup]="privilegeForm">
+        <p>
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="name"
+                       matInput
+                       type="text">
+            </mat-form-field>
+        </p>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-dialog-close mat-stroked-button>Cancelar</button>
+    <button (click)="savePrivilege()"
+            cdkFocusInitial
+            color="warn"
+            mat-stroked-button>Guardar
+    </button>
+</mat-dialog-actions>

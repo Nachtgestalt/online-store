@@ -1,0 +1,20 @@
+<div (scrolled)="onScroll()"
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     [scrollWindow]="false"
+     class="infinite-scroll-container container-fluid"
+     infiniteScroll>
+    <div class="row pt-3">
+        <app-product *ngFor="let product of searchResults"
+                     [productInfo]="product"
+                     class="col-md-3 p-2"></app-product>
+    </div>
+    <div class="row justify-content-center" style="width: 100%; height: 50px; margin-bottom: 1rem">
+        <mat-progress-spinner *ngIf="loading"
+                              color="warn"
+                              diameter="40"
+                              mode="indeterminate"
+                              strokeWidth="3">
+        </mat-progress-spinner>
+    </div>
+</div>

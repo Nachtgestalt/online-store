@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Agregar registro</h1>
+<div mat-dialog-content>
+    <form [formGroup]="addRegistryForm">
+        <mat-form-field appearance="outline" class="mt-3 w-100" floatLabel="always">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="name"
+                   matInput
+                   type="text">
+        </mat-form-field>
+
+        <div class="row m-0 mt-3">
+            <mat-form-field appearance="outline" class="col-md-4 pl-0" floatLabel="always">
+                <mat-label>Código de país</mat-label>
+                <input formControlName="countryCode"
+                       matInput
+                       type="text">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-md-8 p-0" floatLabel="always">
+                <mat-label>Número de whatsapp</mat-label>
+                <input formControlName="whatsappNumber"
+                       matInput
+                       type="text">
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="mt-3 w-100" floatLabel="always">
+            <mat-label>Correo electrónico</mat-label>
+            <input formControlName="email"
+                   matInput
+                   type="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mt-3 w-100" floatLabel="always">
+            <mat-label>Departamento</mat-label>
+            <input formControlName="departmentName"
+                   matInput
+                   type="text">
+        </mat-form-field>
+    </form>
+</div>
+<div class="justify-content-end" mat-dialog-actions>
+    <button (click)="save()"
+            class="mt-3"
+            color="warn"
+            mat-raised-button>
+        Guardar
+    </button>
+</div>

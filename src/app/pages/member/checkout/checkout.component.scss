@@ -1,0 +1,18 @@
+::ng-deep {
+  .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: #f00 !important;
+    color: #fff !important;
+
+    mat-icon {
+      color: #fff;
+    }
+  }
+}
+
+
+mat-form-field {
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+  width: 500px;
+}

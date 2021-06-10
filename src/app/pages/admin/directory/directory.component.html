@@ -1,0 +1,47 @@
+<div class="col-md-12 mt-3">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>Directorio</span>
+            <span class="toolbar-spacer"></span>
+            <button (click)="reloadData()" aria-label="Refrescar info" mat-icon-button>
+                <mat-icon>refresh</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+<div class="col-md-12">
+    <ag-grid-angular [gridOptions]="gridOptions"
+                     [localeText]="localeText"
+                     [singleClickEdit]="true"
+                     [style.height]="gridHeight"
+                     [suppressRowClickSelection]="true"
+                     class="ag-theme-balham"
+                     rowHeight="30"
+                     style="width: 100%;"
+    >
+    </ag-grid-angular>
+</div>
+<div class="row p-3 m-0">
+    <button (click)="openDialogAdd(false)"
+            class="mr-3"
+            color="primary"
+            mat-raised-button>
+        Nuevo
+    </button>
+
+    <button (click)="openDialogAdd(true)"
+            [disabled]="selectedRows.length <= 0"
+            class="mr-3"
+            color="primary"
+            mat-raised-button>
+        Editar selección
+    </button>
+
+    <button (click)="changeStatus()"
+            [disabled]="selectedRows.length <= 0"
+            class="mr-3"
+            color="primary"
+            mat-raised-button>
+        Cambiar estado
+    </button>
+</div>

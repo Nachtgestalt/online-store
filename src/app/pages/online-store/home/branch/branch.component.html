@@ -1,0 +1,36 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let branch of branchs$ | async">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{branch.companyAccount}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Pais: {{branch.country}}</p>
+                                <p>Ciudad: {{branch.city}}</p>
+                                <p>Dirección: {{branch.address}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Acerca de nosotros</h3>
+                                <p *ngIf="branch.osSetupInfos.length > 0">{{branch.osSetupInfos[0].aboutUs}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Contacto</h3>
+                                <p *ngIf="branch.osSetupInfos.length > 0">{{branch.osSetupInfos[0].contactInfo}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+</div>

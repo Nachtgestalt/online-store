@@ -1,0 +1,180 @@
+@import '~@ngx-share/button/themes/default/default-theme';
+
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+@import 'assets/landingpage/css/materialize.scss';
+
+html, body {
+  height: 100%;
+}
+
+:root{
+  --whatsapp-color: #40C351;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-toolbar {
+  background: #FFFFFF;
+  color: #606060;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.main-panel {
+  background-color: #F9F9F9;;
+}
+
+.infinite-scroll-container {
+  height: calc(100vh - 65px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  @media (max-width: 600px) {
+    height: calc(100vh - 125px);
+  }
+}
+
+.infinite-scroll-container-category {
+  height: calc(100vh - 130px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  @media (max-width: 600px) {
+    height: calc(100vh - 160px);
+  }
+}
+
+// ::ng-deep mat-sidenav-content {
+  //overflow: hidden;
+// }
+
+// mat-icon {
+//   color: #f00;
+// }
+
+.view-container {
+  padding-top: 50px;
+  min-height: 500px;
+
+  .full-container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1500px;
+
+    .full-column {
+      width: 80%;
+      float: none !important;
+      margin: auto;
+      margin-top: 4.8%;
+    }
+  }
+}
+
+// .container-fluid {
+//   padding-left: 5px;
+//   padding-right: 5px
+// }
+
+body {
+  @media (max-width: 600px) {
+    overflow-y: hidden
+  }
+}
+
+.alert-danger {
+  color: #f8f8f8;
+  background-color: rgba(105, 102, 102, 0.74);
+  border-color: #5f5a5a;
+}
+
+.alert-success {
+  color: #f8f8f8;
+  background-color: #95C623;
+  border-color: #5f5a5a;
+}
+
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  border: 1px solid transparent;
+}
+
+.snack-danger {
+  background-color: #f00 !important;
+  color: #fff !important;
+}
+
+.mat-simple-snackbar-action {
+  color: #fff !important;
+}
+
+.table-height {
+  height: 100%;
+  max-height: calc(100vh - 300px);
+  width: 100%;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.view-full {
+  width: 80%;
+  margin: auto;
+  margin-top: 4.8%
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.active-list-item {
+  background-color: rgba(0, 0, 0, .1) !important;
+  color: rgb(3, 3, 3);
+}
+
+@media screen and (min-width: 600px){
+  ::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+    // display: none;  /* Ocultar scroll */
+  }
+  /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+  ::-webkit-scrollbar-thumb {
+    background: #f00;
+    border-radius: 4px;
+  }
+  /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  /* Cambiamos el fondo cuando esté en active */
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #f00;
+  }
+  
+  /* Ponemos un color de fondo y redondeamos las esquinas del track */
+  ::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+  }
+  /* Cambiamos el fondo cuando esté en active o hover */
+  ::-webkit-scrollbar-track:hover,
+  ::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+  }
+}

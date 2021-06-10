@@ -1,0 +1,10 @@
+<div mat-tab-nav-bar>
+    <a #rla="routerLinkActive" class="tab-text"
+       *ngFor="let routeLink of routeLinks"
+       [active]="rla.isActive"
+       [routerLink]="routeLink.link" mat-tab-link
+       routerLinkActive>
+        {{routeLink.label}}
+    </a>
+</div>
+<router-outlet></router-outlet>

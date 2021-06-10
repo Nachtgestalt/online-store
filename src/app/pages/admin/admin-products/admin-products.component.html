@@ -1,0 +1,26 @@
+<div class="col-md-12 mt-3">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>Administrar productos</span>
+            <span class="toolbar-spacer"></span>
+            <!--            TODO: Hacer función de reloadData-->
+            <!--            <button (click)="reloadData()" aria-label="Refrescar info" mat-icon-button>-->
+            <!--                <mat-icon>update</mat-icon>-->
+            <!--            </button>-->
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+
+<div class="col-md-12">
+    <ag-grid-angular #agGridItems
+                     (gridReady)="onGridReady($event)"
+                     (rowClicked)="openModal($event)"
+                     [columnDefs]="columnDefs"
+                     [gridOptions]="gridOptions"
+                     [localeText]="localeText"
+                     class="ag-theme-balham"
+                     [style.height]="gridHeight"
+                     style="width: 100%"
+    >
+    </ag-grid-angular>
+</div>

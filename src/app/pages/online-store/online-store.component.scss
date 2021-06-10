@@ -1,0 +1,258 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // @media (max-width: 600px) {
+  //   margin-left: -15px;
+  //   margin-right: -15px
+  // }
+}
+
+.home-is-mobile .home-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 1;
+}
+
+h1.home-app-name {
+  margin-left: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.home-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.home-is-mobile .home-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+.categories-list {
+  height:350px; background:#f9f9f9
+}
+
+::ng-deep {
+  .mat-drawer.mat-drawer-side {
+    width: 240px;
+  }
+
+  .mat-drawer-inner-container {
+   overflow: hidden !important;
+  }
+
+  //
+  //.mat-drawer-inner-container:hover {
+  //  overflow-y: scroll !important;
+  //}
+}
+
+cdk-virtual-scroll-viewport {
+  overflow: hidden;
+}
+
+cdk-virtual-scroll-viewport {
+  @media (max-width: 600px) {
+    overflow-y: scroll;
+  }
+}
+
+cdk-virtual-scroll-viewport:hover {
+  overflow-y: scroll;
+}
+
+::ng-deep {
+  .mat-drawer-content {
+    position: relative;
+    z-index: 1;
+    display: block;
+    height: 100%;
+    //overflow: hidden !important;
+  }
+}
+
+::ng-deep {
+  .mat-toolbar-row, .mat-toolbar-single-row {
+    justify-content: space-between;
+  }
+}
+
+.start {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.center {
+  max-width: 728px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+}
+
+.end {
+  min-width: 225px;
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 600px) {
+    min-width: 0;
+  }
+}
+
+.searchbox {
+  margin: 0 0 0 40px;
+  padding: 4px;
+  flex: 1;
+  font-size: 16px;
+  @media (max-width: 600px) {
+    margin: 0;
+  }
+}
+
+.filterbox {
+  padding: 5px;
+  @media (max-width: 600px) {
+    width: 95vw;
+    margin-left: .4em;
+  }
+}
+
+.search-form {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.search-icon {
+  padding: 4px;
+  cursor: pointer;
+  width: 65px;
+  border: 1px solid #d3d3d3;
+  background-color: #f8f8f8;
+  border-radius: 0 2px 2px 0;
+  margin-top: 10px;
+  height: 38px;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.4em 0 !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+  top: -1.5em;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(.75);
+  width: 133.33333%;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+
+::ng-deep .mat-drawer.mat-drawer-side {
+  z-index: 1 !important;
+}
+
+.avatar-button {
+  background: none;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 6px;
+}
+
+.img-avatar-wrapper {
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  margin: 0 8px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+mat-sidenav {
+  background: #f9f9f9;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.button-no-login-wrapper {
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  border-radius: inherit;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 11px;
+  color: #065fd4;
+  background-color: transparent;
+  text-transform: inherit;
+  flex: 1 1 auto;
+
+  mat-label {
+    margin-left: 8px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.category-icon {
+  margin-right: 15px;
+}
+
+.imagotipo-tiendas-sidenav {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: center
+}
+
+.imagotipo-sidenav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  transform: translateX(10px); /*D element Width[if needed]*/
+}
+
+.sidenav-back-button {
+  font-size: 3rem;
+}
+
+.offer-icon {
+  color: #64dd17;
+}
+
+::ng-deep {
+  .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    right: -5px;
+    top: -5px;
+  }
+}

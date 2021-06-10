@@ -1,0 +1,23 @@
+<div class="container d-flex flex-column justify-content-center" style="height: calc(100vh - 70px)">
+    <div class="alert alert-success">
+        <p>Su pedido está siendo procesado, por favor manténgase atento a las actualizaciones de estado de su lista de
+            pedidos y a su teléfono celular.</p>
+        <p>Agradecemos su preferencia</p>
+    </div>
+    <div class="row justify-content-end w-100 mt-1">
+        <button (click)="goToOrders()"
+                color="primary"
+                mat-stroked-button
+        >
+            Ir a ver mis pedidos
+        </button>
+
+        <button (click)="goToHome()"
+                class="ml-3"
+                color="primary"
+                mat-stroked-button
+        >
+            Ir a ver más productos
+        </button>
+    </div>
+</div>

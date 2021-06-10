@@ -1,0 +1,45 @@
+<div class="view-container-register">
+    <div class="row view-full-register">
+        <div *ngIf="!registrationSuccess" class="col-md-12">
+            <h1 class="title">Confirma tu correo electrónico</h1>
+            <h2 class="subtitle">Te hemos enviado un correo electrónico a <strong
+                    style="font-weight: bolder">{{email}}</strong> con tu código de confirmación</h2>
+            <form (ngSubmit)="onSubmit()">
+                <div class="row mb-3">
+                    <div class="col-md-6 mt-3">
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>Codigo de confirmación</mat-label>
+                            <input [formControl]="verificationCodeInput"
+                                   matInput
+                                   placeholder="Ingresa tu código de confirmación"
+                                   type="text">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <button color="primary" mat-raised-button style="width: 100%">
+                            Verificar cuenta
+                        </button>
+                    </div>
+                </div>
+
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+            <div class="row mt-3 justify-content-center">
+                <h2 class="subtitle">¿No te llego un correo?
+                    <a (click)="resendVerificationCode()" class="register">
+                        Reenviar código de confirmación
+                    </a>
+                </h2>
+            </div>
+        </div>
+        <div *ngIf="registrationSuccess" class="col-md-12">
+            <div class="alert alert-success mt-3 mb-0">
+                <h4>Tu cuenta ha quedado registrada correctamente en breve te redigiremos
+                    para que puedas iniciar sesion</h4>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<mat-horizontal-stepper #stepper linear>
+    <mat-step [editable]="editableStep" [stepControl]="setupFormGroup">
+        <ng-template matStepLabel>Selecciona una empresa</ng-template>
+        <div class="col-md-12" style="height: 600px">
+            <ag-grid-angular #agGridItems
+                             [gridOptions]="gridOptions"
+                             [localeText]="localeText"
+                             [singleClickEdit]="true"
+                             [stopEditingWhenGridLosesFocus]="true"
+                             [suppressRowClickSelection]="true"
+                             class="ag-theme-balham"
+                             rowHeight="30"
+                             style="width: 100%; height: 100%"
+            >
+            </ag-grid-angular>
+        </div>
+        <div class="d-flex col-md-12 flex-row-reverse mt-2">
+            <button (click)="loadUsers()"
+                    [disabled]="this.setupFormGroup.invalid"
+                    mat-raised-button
+                    color="warn"
+                    matStepperNext>Siguiente
+            </button>
+        </div>
+    </mat-step>
+    <mat-step [editable]="editableStep" [stepControl]="userFormControl">
+        <ng-template matStepLabel>Selecciona los usuarios</ng-template>
+        <div class="col-md-12" style="height: 600px">
+            <ag-grid-angular [gridOptions]="gridUserOptions"
+                             [localeText]="localeText"
+                             [singleClickEdit]="true"
+                             [stopEditingWhenGridLosesFocus]="true"
+                             [suppressRowClickSelection]="true"
+                             class="ag-theme-balham"
+                             rowHeight="30"
+                             style="width: 100%; height: 100%"
+            >
+            </ag-grid-angular>
+        </div>
+        <div class="d-flex col-md-12 justify-content-between mt-2">
+            <button mat-button matStepperPrevious>Atras</button>
+            <button color="warn"
+                    mat-raised-button
+                    [disabled]="userFormControl.invalid"
+                    matStepperNext>Siguiente
+            </button>
+        </div>
+    </mat-step>
+    <mat-step [editable]="editableStep">
+        <ng-template matStepLabel>Seleccionar administradores</ng-template>
+        <div class="container-fluid">
+            <h2>Selecciona a los usuarios que seran administradores</h2>
+            <div class="row">
+                <mat-selection-list #list [(ngModel)]="adminUsers">
+                    <mat-list-option *ngFor="let user of selectedUsers" [value]="user"
+                                     checkboxPosition="before">
+                        <div mat-line>{{user.email}}</div>
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </div>
+        <div class="d-flex col-md-12 justify-content-between mt-2">
+            <button mat-button matStepperPrevious>Atras</button>
+            <button (click)="assignUsersToCompany()"
+                    color="warn"
+                    mat-raised-button>Guardar
+            </button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Completado</ng-template>
+        <p>Se han asignado correctamente los usuarios</p>
+        <div class="d-flex col-md-12 justify-content-between mt-2">
+            <button (click)="resetStepper()"
+                    color="warn"
+                    mat-raised-button>Reiniciar
+            </button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

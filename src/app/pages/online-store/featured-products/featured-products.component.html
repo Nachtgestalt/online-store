@@ -1,0 +1,13 @@
+<div (scrolled)="onScroll()"
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     [scrollWindow]="false"
+     class="infinite-scroll-container-category container-fluid"
+     infiniteScroll>
+    <app-home-header [category]="categoryTitle" [setup]="getSetupState | async"></app-home-header>
+    <div class="row pt-3">
+        <app-product *ngFor="let product of products"
+                     [productInfo]="product"
+                     class="col-md-3 p-2"></app-product>
+    </div>
+</div>

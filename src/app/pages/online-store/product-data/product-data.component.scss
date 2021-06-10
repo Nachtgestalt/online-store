@@ -1,0 +1,33 @@
+.ng-image-slider-lightbox .lightbox-wrapper .lightbox-div img {
+  z-index: 10000;
+}
+
+ng-image-slider {
+  background-color: #000;
+  border: solid 15px #000;
+  display: block;
+}
+
+.price-info {
+  margin: .5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+// :host :ng-deep body {
+//   overflow-y: hidden
+// }
+
+.product-subtitle {
+  font-size: 12px;
+  color: #065fd4; font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-image-slider {
+  margin-left: -30px;
+  margin-right: -30px
+}

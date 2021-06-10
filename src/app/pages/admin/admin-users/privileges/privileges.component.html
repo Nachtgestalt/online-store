@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Asignar privilegios</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="col-md-12" style="height: 400px">
+            <ag-grid-angular #agGridItems
+                             [gridOptions]="gridOptions"
+                             [localeText]="localeText"
+                             [singleClickEdit]="true"
+                             [stopEditingWhenGridLosesFocus]="true"
+                             [suppressRowClickSelection]="true"
+                             class="ag-theme-balham"
+                             rowHeight="30"
+                             style="width: 100%; height: 100%"
+            >
+            </ag-grid-angular>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-dialog-close mat-stroked-button>Cancelar</button>
+    <button (click)="save()"
+            cdkFocusInitial
+            color="warn"
+            mat-stroked-button>Guardar
+    </button>
+</mat-dialog-actions>

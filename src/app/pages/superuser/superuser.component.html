@@ -1,0 +1,58 @@
+<app-loading-screen></app-loading-screen>
+
+<div [class.home-is-mobile]="mobileQuery.matches" class="home-container">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row class="home-toolbar">
+            <div class="start">
+                <button (click)="snav.toggle()" mat-icon-button>
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <h1 class="home-app-name" routerLink="/">
+                    <img *ngIf="!mobileQuery.matches" alt="Tiendas Guayacan"
+                         src="assets/logos/tiendasGuayacanImagotipo.svg" style="width: 100%">
+                    <img *ngIf="mobileQuery.matches" alt="Tiendas Guayacan"
+                         src="assets/logos/tiendasGuayacanIsoTipo.svg" style="width: 100%">
+                </h1>
+            </div>
+            <div class="center"></div>
+            <div class="end">
+                <button *ngIf="isAuthenticated" [matMenuTriggerFor]="menu" class="avatar-button" id="avatar-button" mat-button color="primary">
+                    <div class="img-avatar-wrapper">
+                        <img alt="Imagen de perfil" class="img-avatar"
+                             src="assets/no-profile-image.png">
+                    </div>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <span *ngIf="user" mat-menu-item>{{user?.username}}</span>
+                    <button (click)="logout()" mat-menu-item>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="home-sidenav-container">
+        <mat-sidenav #snav [autoFocus]="!mobileQuery.matches"
+                     [fixedInViewport]="mobileQuery.matches"
+                     [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches"
+                     fixedTopGap="56">
+            <div *ngIf="mobileQuery.matches" class="imagotipo-tiendas-sidenav">
+                <img alt="Tiendas Guayacan" src="assets/logos/tiendasGuayacanLogotipo.svg">
+            </div>
+            <mat-nav-list style="height: 100%">
+                <a (click)="mobileQuery.matches ? snav.close() : null"
+                   *ngFor="let option of dashboardAdminOptions"
+                   routerLinkActive="active-list-item"
+                   [routerLink]="option.url"
+                   mat-list-item title="{{option.label | titlecase}}">
+                    {{option.label | titlecase}}</a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="container-fluid main-panel">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,58 @@
+<div class="row mb-0">
+    <div class="col-md-12">
+        <button (click)="goBack()" aria-label="Regresar a mis pedidos" mat-icon-button>
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+</div>
+<div class="row mb-0 justify-content-between">
+    <div class="col">
+        <p class="m-0 username-label">Cliente: {{personData?.firstname}} {{personData?.lastname}}</p>
+        <p class="m-0 order-label">Pedido Nro: {{orderNumberLabel}}</p>
+        <p class="m-0">Fecha: {{order?.emisionDate | date: 'dd/MM/yyyy HH:mm'}}</p>
+    </div>
+    <div class="row justify-content-end">
+        <div [style.background-color]="statusOrder?.typeStatusOrders.statusColor"
+             class="d-flex flex-column justify-content-center bolder px-3">
+            <span>Estado: {{statusOrderLabel}}</span>
+        </div>
+        <div [style.background-color]="verifiedPayColor"
+             class="d-flex flex-column justify-content-center pl-5 bolder pr-3">
+            <span>Pago Verificado: {{order?.verifiedPay === 1 ? 'Si' : 'No'}}</span>
+        </div>
+    </div>
+</div>
+<!-- <div class="col-md-12" style="height: calc(100vh - 300px)"> -->
+    <ag-grid-angular #agGridItems
+                     [gridOptions]="gridOptions"
+                     [localeText]="localeText"
+                     [singleClickEdit]="true"
+                     [stopEditingWhenGridLosesFocus]="true"
+                     [suppressRowClickSelection]="true"
+                     class="ag-theme-balham"
+                     rowHeight="30"
+                     style="width: 100%;"
+                     [style.height]="gridHeight"
+    >
+    </ag-grid-angular>
+<!-- </div> -->
+<div class="row justify-content-between mt-3">
+    <div class="col-md-10">
+        <button (click)="openCheckPaymentDialog()"
+                class="mr-3"
+                color="primary"
+                mat-raised-button>
+            Ver pago
+        </button>
+
+        <button (click)="openChangeStatusOrderDialog()"
+                class="mr-3"
+                color="primary"
+                mat-raised-button>
+            Cambiar estado
+        </button>
+    </div>
+    <div class="col-md-2" style="text-align: end">
+        <span style="font-weight: bolder">Total: {{total | currency}}</span>
+    </div>
+</div>

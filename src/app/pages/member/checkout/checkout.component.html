@@ -1,0 +1,328 @@
+<div class="container-fluid mt-3" style="height: calc(100vh - 80px);">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-horizontal-stepper #stepper labelPosition="bottom" linear>
+                <mat-step [stepControl]="personaDataGroup">
+                    <div class="d-flex justify-content-center">
+                        <form (ngSubmit)="savePersonData()" [formGroup]="personaDataGroup">
+                            <ng-template matStepLabel>Datos personales</ng-template>
+                            <div class="d-flex flex-column col-md-12 mt-3 justify-content-center">
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always"
+                                                style="min-width: 150px">
+                                    <mat-label>C.I / RUC</mat-label>
+                                    <input formControlName="ciRuc" matInput placeholder="13 digitos" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Nombre o Razon social</mat-label>
+                                    <input formControlName="firstname" matInput required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Apellido</mat-label>
+                                    <input formControlName="lastname" matInput>
+                                </mat-form-field>
+                                <div class="d-flex flex-row-reverse">
+                                    <button [disabled]="personaDataGroup.invalid" color="warn"
+                                            mat-raised-button
+                                            matStepperNext>Siguiente
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="billingAddressGroup">
+                    <div class="d-flex justify-content-center">
+                        <form (ngSubmit)="saveBillingAddress()" [formGroup]="billingAddressGroup">
+                            <ng-template matStepLabel>Datos de facturación</ng-template>
+                            <div class="d-flex flex-column col-md-12 mt-3 justify-content-center">
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>País</mat-label>
+                                    <input formControlName="country" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Ciudad</mat-label>
+                                    <input formControlName="city" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Dirección</mat-label>
+                                    <input formControlName="address" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Número</mat-label>
+                                    <input formControlName="houseNumber" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Código postal</mat-label>
+                                    <input formControlName="zipCode" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Calle principal</mat-label>
+                                    <input formControlName="streetMain" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Calle secundaria</mat-label>
+                                    <input formControlName="streetSecond" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Referencía</mat-label>
+                                    <input formControlName="reference" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Email</mat-label>
+                                    <input formControlName="email" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Número de teléfono</mat-label>
+                                    <input formControlName="phone" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Número de teléfono movil</mat-label>
+                                    <input formControlName="mobile" matInput>
+                                </mat-form-field>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <button mat-raised-button matStepperPrevious>Atras</button>
+                                    <button [disabled]="billingAddressGroup.invalid"
+                                            color="warn" mat-raised-button matStepperNext>Siguiente
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="deliveryAddressGroup">
+                    <div class="d-flex justify-content-center">
+                        <form (ngSubmit)="saveDeliveryAddress()" [formGroup]="deliveryAddressGroup">
+                            <ng-template matStepLabel>Datos de entrega</ng-template>
+                            <div class="d-flex flex-column col-md-12 mt-3 justify-content-center">
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>País</mat-label>
+                                    <input formControlName="country" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Ciudad</mat-label>
+                                    <input formControlName="city" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Dirección</mat-label>
+                                    <input formControlName="address" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Número</mat-label>
+                                    <input formControlName="houseNumber" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Código postal</mat-label>
+                                    <input formControlName="zipCode" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Calle principal</mat-label>
+                                    <input formControlName="streetMain" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Calle secundaria</mat-label>
+                                    <input formControlName="streetSecond" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Referencía</mat-label>
+                                    <input formControlName="reference" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Email</mat-label>
+                                    <input formControlName="email" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Número de teléfono</mat-label>
+                                    <input formControlName="phone" matInput>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="mb-3" floatLabel="always">
+                                    <mat-label>Número de teléfono movil</mat-label>
+                                    <input formControlName="mobile" matInput>
+                                </mat-form-field>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <button mat-raised-button matStepperPrevious>Atras</button>
+                                    <button color="warn" mat-raised-button matStepperNext>Siguiente</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="payType">
+                    <div class="d-flex justify-content-center flex-column">
+                        <ng-template matStepLabel>Forma de pago</ng-template>
+                        <div class="d-flex justify-content-center mt-3">
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <mat-label>Tipos de pago</mat-label>
+                                <mat-select (selectionChange)="changeSelectionPayType($event)">
+                                    <mat-option *ngFor="let payType of payTypes | async"
+                                                [value]="payType"
+                                    >{{payType.payName}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <mat-accordion *ngIf="payTypeIsTransfer" class="mt-3">
+                            <mat-expansion-panel [expanded]="payTypeIsTransfer">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Cuentas bancarias
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <div class="d-flex flex-column">
+                                    <label id="example-radio-group-label">Selecciona una cuenta</label>
+                                    <mat-radio-group
+                                            [(ngModel)]="bankAccount"
+                                            aria-labelledby="example-radio-group-label"
+                                            class=" d-flex flex-column">
+                                        <mat-radio-button *ngFor="let bankAccount of bankAccounts | async"
+                                                          [value]="bankAccount" class="m-1">
+                                            {{bankAccount.institucionFinanciera}}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+
+
+                                <div class="d-flex flex-column">
+                                    <div *ngIf="bankAccount" class="d-flex flex-column align-items-center">
+                                        <p>Nro. Cuenta: {{bankAccount.nroCuenta}}</p>
+                                        <p>Titular: {{bankAccount.titularCuenta}}</p>
+                                    </div>
+                                    <img *ngIf="imgURL" [src]="imgURL" height="200">
+                                    <button (click)="file.click()" class="my-3" mat-stroked-button>
+                                        Seleccionar archivos
+                                    </button>
+                                    <input #file
+                                           (change)="onFileChange($event.target.files)"
+                                           [formControl]="fileInput"
+                                           accept="image/*"
+                                           style="display: none"
+                                           type="file"
+                                    />
+                                    <button [disabled]="!bankAccount" color="warn" mat-raised-button matStepperNext>
+                                        Siguiente
+                                    </button>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <!--                        <div class="d-flex flex-column mt-3 justify-content-center">-->
+                        <!--                            <mat-accordion>-->
+
+
+                        <!--                                <mat-expansion-panel (opened)="setPayType(2)" [expanded]="payType.value === 2">-->
+                        <!--                                    <mat-expansion-panel-header>-->
+                        <!--                                        <mat-panel-title>-->
+                        <!--                                            Efectivo al momento de recibir-->
+                        <!--                                        </mat-panel-title>-->
+                        <!--                                    </mat-expansion-panel-header>-->
+                        <!--                                    <div class="d-flex flex-column">-->
+                        <!--                                        <mat-form-field appearance="outline" class="mb-3" floatLabel="always">-->
+                        <!--                                            <mat-label>Pago en efectivo</mat-label>-->
+                        <!--                                            <input matInput>-->
+                        <!--                                        </mat-form-field>-->
+                        <!--                                        <button color="warn" mat-raised-button matStepperNext>Siguiente</button>-->
+                        <!--                                    </div>-->
+                        <!--                                </mat-expansion-panel>-->
+
+                        <!--                                <mat-expansion-panel (opened)="setPayType(3)" [expanded]="payType.value === 3">-->
+                        <!--                                    <mat-expansion-panel-header>-->
+                        <!--                                        <mat-panel-title>-->
+                        <!--                                            Paypal-->
+                        <!--                                        </mat-panel-title>-->
+                        <!--                                    </mat-expansion-panel-header>-->
+                        <!--                                    <div class="d-flex flex-column">-->
+
+                        <!--                                        <mat-form-field appearance="outline" class="mb-3" floatLabel="always">-->
+                        <!--                                            <mat-label>Pago con paypal</mat-label>-->
+                        <!--                                            <input matInput>-->
+                        <!--                                        </mat-form-field>-->
+                        <!--                                        <button color="warn" mat-raised-button matStepperNext>Siguiente</button>-->
+                        <!--                                    </div>-->
+                        <!--                                </mat-expansion-panel>-->
+
+                        <!--                                <mat-expansion-panel (opened)="setPayType(4)" [expanded]="payType.value === 4">-->
+                        <!--                                    <mat-expansion-panel-header>-->
+                        <!--                                        <mat-panel-title>-->
+                        <!--                                            Crédito-->
+                        <!--                                        </mat-panel-title>-->
+                        <!--                                    </mat-expansion-panel-header>-->
+                        <!--                                    <div class="d-flex flex-column">-->
+                        <!--                                        <mat-form-field appearance="outline" class="mb-3" floatLabel="always">-->
+                        <!--                                            <mat-label>Pago con paypal</mat-label>-->
+                        <!--                                            <input matInput>-->
+                        <!--                                        </mat-form-field>-->
+                        <!--                                        <button color="warn" mat-raised-button matStepperNext>Siguiente</button>-->
+                        <!--                                    </div>-->
+                        <!--                                </mat-expansion-panel>-->
+                        <!--                            </mat-accordion>-->
+                        <!--                        </div>-->
+                    </div>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Confirma tus datos</ng-template>
+                    <div class="row mt-3">
+                        <div class="col-md-8">
+                            <mat-card>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-card-title>Cliente</mat-card-title>
+                                        <p>CI/RUC: {{fPersonData.ciRuc.value}}</p>
+                                        <p>{{fPersonData.firstname.value}} {{fPersonData.lastname.value ? fPersonData.lastname.value : ''}}</p>
+                                        <p>Dirección: {{fBillingAddress.country.value}}</p>
+                                        <p>{{fBillingAddress.city.value}}</p>
+                                        <p>{{fBillingAddress.address.value}}</p>
+                                        <p>{{fBillingAddress.houseNumber.value}}</p>
+                                        <p>{{fBillingAddress.zipCode.value}}</p>
+                                        <p>{{fBillingAddress.streetMain.value}}</p>
+                                        <p>{{fBillingAddress.streetSecond.value}}</p>
+                                        <p>{{fBillingAddress.reference.value}}</p>
+                                        <p>Telefono: {{fBillingAddress.mobile.value}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-card-title>Direccion de entrega</mat-card-title>
+                                        <p>Ciudad: {{fDeliveryAddress.city.value}}</p>
+                                        <p>{{fDeliveryAddress.address.value}}</p>
+                                        <p>{{fDeliveryAddress.houseNumber.value}}</p>
+                                        <p>{{fDeliveryAddress.zipCode.value}}</p>
+                                        <p>{{fDeliveryAddress.streetMain.value}}</p>
+                                        <p>{{fDeliveryAddress.streetSecond.value}}</p>
+                                        <p>{{fDeliveryAddress.reference.value}}</p>
+                                        <p>Telefono: {{fDeliveryAddress.mobile.value}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <mat-card-title>Observaciones para la entrega</mat-card-title>
+                                        <mat-form-field appearance="outline" class="w-100 mt-3" floatLabel="always">
+                                            <mat-label>Escribe tus obervaciones</mat-label>
+                                            <textarea [formControl]="observationTextArea"
+                                                      cdkTextareaAutosize
+                                                      matInput></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </mat-card>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-card>
+                                <mat-card-header>
+                                    <mat-card-title>Resumen del pedido</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <h3>Total: {{(getCartState | async) | currency}}</h3>
+                                </mat-card-content>
+                                <mat-card-actions>
+                                    <button (click)="confirmOrder()"
+                                            color="warn"
+                                            mat-raised-button
+                                            matStepperNext>Confirmar pedido de compra
+                                    </button>
+                                </mat-card-actions>
+
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>

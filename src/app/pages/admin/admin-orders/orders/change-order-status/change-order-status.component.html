@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Cambiar estado de la orden</h1>
+<div mat-dialog-content>
+    <form [formGroup]="orderStatusForm">
+        <mat-form-field appearance="outline" class="mt-3 w-100" floatLabel="always">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="typeStatusOrdersId">
+                <mat-option *ngFor="let type of typeStatus$ | async" [value]="type.id">
+                    {{type.statusName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mt-3 w-100" floatLabel="always">
+            <mat-label>Observación</mat-label>
+            <textarea cdkTextareaAutosize
+                      formControlName="observation"
+                      matInput></textarea>
+        </mat-form-field>
+    </form>
+</div>
+<div class="justify-content-end" mat-dialog-actions>
+    <button (click)="save()"
+            class="mt-3"
+            color="warn"
+            mat-raised-button>
+        Cambiar estado
+    </button>
+</div>

@@ -1,0 +1,58 @@
+<div class="col-md-12 mt-3">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>Administrar usuarios</span>
+            <span class="toolbar-spacer"></span>
+            <button (click)="reloadData()" aria-label="Refrescar info" mat-icon-button>
+                <mat-icon>update</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+
+<div class="col-md-12">
+    <ag-grid-angular [gridOptions]="gridOptions"
+                     [localeText]="localeText"
+                     [singleClickEdit]="true"
+                     [stopEditingWhenGridLosesFocus]="true"
+                     [suppressRowClickSelection]="true"
+                     class="ag-theme-balham"
+                     rowHeight="30"
+                     style="width: 100%; height: 100%"
+                     [style.height]="gridHeight"
+    >
+    </ag-grid-angular>
+</div>
+<div class="row p-3 m-0">
+
+    <button (click)="toogleShowStock()"
+            [disabled]="selectedRows.length <= 0"
+            class="mr-3"
+            color="primary"
+            mat-raised-button>
+        {{showStockLabelButton}} stock
+    </button>
+
+    <button (click)="openModalPrice()"
+            [disabled]="selectedRows.length <= 0"
+            class="mr-3"
+            color="primary"
+            mat-raised-button>
+        Editar precio a mostrar
+    </button>
+
+    <button (click)="toggleStatus()"
+            [disabled]="selectedRows.length <= 0"
+            class="mr-3"
+            color="primary"
+            mat-raised-button>
+        {{statusLabelButton}} selección
+    </button>
+    <button (click)="openModal()" *ngIf="user.isRoot === 1"
+            [disabled]="selectedRows.length <= 0"
+            color="primary"
+            mat-raised-button>
+        Ver privilegios
+    </button>
+
+</div>

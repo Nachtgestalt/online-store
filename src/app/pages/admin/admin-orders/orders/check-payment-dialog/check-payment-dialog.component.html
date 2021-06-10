@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Revisión de pagos</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row justify-content-center">
+                <img *ngIf="preview" [src]="preview" height="200">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3>Archivos cargados</h3>
+            <div *ngIf="(images | async)?.length > 0; else noFiles" class="row">
+                <div class="col-md-12">
+                    <mat-selection-list>
+                        <mat-list-option *ngFor="let image of images | async" [value]="image">
+                            <img (click)="preview = image.url" [src]="image?.url" mat-list-avatar
+                                 style="width: 64px; height: 64px">
+                            <div mat-line>Fecha de subida:</div>
+                            <div mat-line>{{image.LastModified | date}}</div>
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            </div>
+            <ng-template #noFiles>
+                No hay archivos disponibles
+            </ng-template>
+        </div>
+    </div>
+    <div class="row">
+        <mat-form-field appearance="outline" class="w-100 mt-3" floatLabel="always">
+            <mat-label>Escribe tus obervaciones</mat-label>
+            <textarea [formControl]="observationTextArea"
+                      cdkTextareaAutosize
+                      matInput></textarea>
+        </mat-form-field>
+    </div>
+</div>
+<div class="justify-content-end" mat-dialog-actions>
+    <button (click)="togglePayStatus()" class="ml-5 col-md-4 mt-3"
+            color="warn"
+            mat-raised-button>
+        Cambiar estado
+    </button>
+</div>
